@@ -7,6 +7,9 @@
 # 7. Удалить контакт
 # 8. Выход
 
+# ДЗ: Дополнить телефонный справочник возможностью изменения и удаления данных. Пользователь также может ввести имя или фамилию, 
+# и Вы должны реализовать функционал для изменения и удаления данных
+
 def menu():
     dict_phnbk = {}
     while True:
@@ -24,14 +27,15 @@ def menu():
                 print(dict_phnbk)
         elif anc == 3:
             cont_find(dict_phnbk)
+            new_cont = cont_find(dict_phnbk)
+            add_cont(dict_phnbk, new_cont)
         elif anc == 4:
             dict_phnbk = add_cont(dict_phnbk)
             print('Сохранись!')
         elif anc == 5:
-            new_cont = cont_find(dict_phnbk)
-            add_cont(dict_phnbk, new_cont)
-        elif anc == 6:
             pass
+        elif anc == 6:
+            dict_phnbk = cont_del(dict_phnbk)
         elif anc == 7:
             print('End')
             break
@@ -75,5 +79,20 @@ def cont_find(dict_phnbk):
         return [name_cont, dict_phnbk[name_cont]]
     else:
         print('Не найден')
+
+# def cont_change(dict_phnbk):
+#     name_cont = input('Введите ФИО контакта')
+#     if name_cont in dict_phnbk:
+
+def cont_del(dict_phnbk):
+    name = input('Введите ФИО контакта: ')
+    for name_cont in dict_phnbk:
+        if name_cont['name'] == name:
+            chs_del = input('Хотите удалить контакт? (Y/N): ')
+            if chs_del == 'Y':
+                dict_phnbk.remove(name_cont)
+                print(f'Контакт {name_cont} удален')
+
+
 
 menu()
