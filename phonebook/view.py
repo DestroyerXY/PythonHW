@@ -2,16 +2,24 @@ import text_fields
 
 
 def main_menu():
-    return int(input('''Главное Меню:
-    1. Открыть файл
-    2. Сохранить файл
-    3. Показать контакты
-    4. Добавить контакт
-    5. Изменить контакт
-    6. Найти контакт
-    7. Удалить контакт
-    8. Выход
-Выберите пункт меню:'''))
+    print(text_fields.main_menu)
+    length_menu = len(text_fields.main_menu.split('\n')) - 1
+    while True:
+        choice = input('Выберите пункт меню:')
+        if choice.isdigit() and 0 < int(choice) <= length_menu:
+            return int(choice)
+        else:
+            print(f'Введите число от 1 до {length_menu}')
+#     return int(input('''Главное Меню:
+#     1. Открыть файл
+#     2. Сохранить файл
+#     3. Показать контакты
+#     4. Добавить контакт
+#     5. Изменить контакт
+#     6. Найти контакт
+#     7. Удалить контакт
+#     8. Выход
+# Выберите пункт меню:'''))
 
 def show_contacts(book:list , error_message: str):
     if not book:
@@ -49,5 +57,5 @@ def show_message(message: str):
     print('-' * len(message))
 
 def delete_contact(contact: dict, index: int):
-    contact = contact[index]
+    contact = contact[index-1]
     print(f'Контакт {contact} успешно удален')

@@ -1,8 +1,13 @@
 import view
 import model
+# import phone_book
 
 def start():
     while True:
+        # pb = phone_book.PhoneBook('phonebook\phone.txt')
+        # # pb.new_contact('Иррина Алегрова', '23456789', 'певица')
+        # # print(pb)
+        # # pb.save()
         pb = model.get_phone_book()
         choice = view.main_menu()
         match choice:
